@@ -13,7 +13,7 @@
 				상품이름 : <input type="text" name="itemName">
 			</div>
 			<div>
-				상품 이미지 : <input type="file" name="itemImg">
+				상품 이미지 : <input type="file" name="filename">
 			</div>
 			<div>
 				<button type="submit">상품등록</button>
