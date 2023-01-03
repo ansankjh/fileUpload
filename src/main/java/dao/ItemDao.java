@@ -3,11 +3,38 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import vo.Item;
 
 public class ItemDao {
+	// 상품 상세보기 : 조인으로 해결
+	public ArrayList<HashMap<String, Object>> selectItemList(Connection conn) throws Exception {
+		// 객체 초기화
+		ArrayList<HashMap<String, Object>> list = null;
+		// 쿼리문 작성
+		String sql = "SELECT it.item_no itemNo, it.item_name itemName, img.filename fileName"
+				+ "		FROM item it INNER JOIN item_img img "
+				+ " 	ON it.item_no = img.item_no";
+		// 쿼리 객체 생성
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		// 쿼리 실행
+		ResultSet rs = stmt.executeQuery();
+		list = new ArrayList<HashMap<String, Object>>();
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("itemNo", rs.getInt("itemNo"));
+			m.put("itemName", rs.getString("itemName"));
+			m.put("fileName", rs.getString("fileName"));
+			list.add(m);
+		}
+		// 자원반납, 리턴값
+		stmt.close();
+		rs.close();
+		return list;
+	}
+	
 	public HashMap<String, Integer> insertItem(Connection conn, Item item) throws Exception {
 		// 객체초기화
 		HashMap<String, Integer> map = null;
