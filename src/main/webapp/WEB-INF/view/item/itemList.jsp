@@ -22,10 +22,10 @@
 						<div><img src="${pageContext.request.contextPath}/upload/${m.fileName}" width="200" height="200"></div>
 						<div>${m.itemName}</div>
 						<div>
-							<a>수정</a>
+							<a href="${pageContext.request.contextPath}/item/updateFile?itemNo=${m.itemNo}">수정</a>
 						</div>
 						<div>
-							<a>삭제</a>
+							<a href="${pageContext.request.contextPath}/item/deleteFile?itemNo=${m.itemNo}">삭제</a>
 						</div>
 					</td>
 				</c:forEach>

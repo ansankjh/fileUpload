@@ -17,7 +17,7 @@ import vo.Item;
 import vo.ItemImg;
 
 @WebServlet("/item/addItem")
-public class addItemController extends HttpServlet {
+public class AddItemController extends HttpServlet {
 	private ItemService itemService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/view/item/fileUpload.jsp").forward(request, response);
